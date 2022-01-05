@@ -1,7 +1,7 @@
 # SIRA622_2022
 
 In this course, 
-- MATLAB programing language is employed for teaching medical image processing.
+- MATLAB programing language is employed for teaching.
 - Main reference textboox:
  1. Principles of digital image processing Fundamental techniques by Wilhelm Burgeris and Mark J.Burgeis 
  2. Digital Image Processing”, Rafael C. Gonzalez & Richard E. Woods, Addison-Wesley
