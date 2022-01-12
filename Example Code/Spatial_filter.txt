@@ -1,0 +1,49 @@
+% Spatial filter fo smoothing
+im1 = rgb2gray(imread('castle.JPG'));
+figure('Name','Original data','NumberTitle','on');imshow(im1);
+
+% smoothing filter
+f = 1/9*ones(3);
+out = imfilter(im1,f);
+figure('Name','Filtered data','NumberTitle','on');imshow(out, [0 255]);
+out1 = imfilter(im1,f);
+figure('Name','Filtered data','NumberTitle','on');imshow(out, [0 255]);
+f = 1/12*ones(3);
+out2 = imfilter(im1,f);
+figure('Name','Filtered data','NumberTitle','on');imshow(out, [0 255]);
+imshow([im1 out;out1 out2])
+
+% Seperating color channel
+input = imread('Japan.jpg');
+imshow(input)
+input = double(input);
+figure;hist(reshape(input,[],3),1:max(input(:))); 
+colormap([1 0 0; 0 1 0; 0 0 1]);
+
+redChannel = input(:,:,1);
+greenChannel = input(:, :, 2);
+blueChannel = input(:, :, 3);
+binaryImageR = redChannel  > 120;
+binaryImageG = greenChannel  > 120;
+binaryImageB = blueChannel  > 120;
+figure;imshow([binaryImageR,binaryImageG,binaryImageB])
+
+%%%%%%%%% Median filter %%%%%%%%%%%%%
+I=im2double(rgb2gray(imread('castle.JPG')));
+M = medfilt2(I);
+
+% Add type of noise 
+J4 = imnoise(I,'poisson');
+J1 = imnoise(I,'gaussian');
+J5 = imnoise(I,'salt & pepper',0.1);
+J6 = imnoise(I,'speckle',0.5);
+
+% Impluse noise that p is range 0 to 1 
+p = 0.5; 
+Ir = (I+p*rand(size(I)))/(1+p);  
+
+% Median filter
+M5 = medfilt3(J5);
+Mr = medfilt3(Ir);
+figure;imshow([J1 J5 Ir; M1 M5 Mr])
+

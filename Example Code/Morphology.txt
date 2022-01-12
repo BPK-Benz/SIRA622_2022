@@ -1,0 +1,26 @@
+# Import image
+imG = imread('font.jpg');
+
+# Convert rgb2gray
+imC = rgb2gray(imG);
+
+# Create kernel funtion: diamond, square, line, disk and sphere
+SE = strel('diamond',3);
+
+# Show image
+figure('Name','Image converteer','NumberTitle','off');
+subplot(2,1,1), imshow(imG)
+subplot(2,1,2), imshow(imC)
+close;
+
+
+# Example of dilation, erosion, opening and closing command
+outD = imdilate(imC,SE);
+outE = imerode(imC,SE);
+out = imopen(imC,SE);
+out = imclose(imC,SE);
+
+figure('Name','Morphological operation','NumberTitle','off');
+subplot(211);imshow(imC);title('Original')
+subplot(212);imshow(outD);title('Dilation')
+subplot(212);imshow(outE);title('Erosion')
